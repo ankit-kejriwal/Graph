@@ -22,13 +22,13 @@ public class Graph {
         DFSUtil(s,visited);
     }
 
-    public void DFSUtil(int s, boolean[] visited){
+    public void DFSUtil(int s, boolean[] visited) {
         visited[s] = true;
         System.out.print(s+" ");
         Iterator<Integer> i = adj[s].listIterator();
         while (i.hasNext()){
             int temp = i.next();
-            if(!visited[temp]){
+            if(!visited[temp]) {
                 DFSUtil(temp,visited);
             }
         }
