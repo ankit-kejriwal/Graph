@@ -17,12 +17,29 @@ public class Graph {
         adj[v].add(w);
     }
 
+    void DFS(int s){
+        boolean visited[] = new boolean[V];
+        DFSUtil(s,visited);
+    }
+
+    public void DFSUtil(int s, boolean[] visited){
+        visited[s] = true;
+        System.out.print(s+" ");
+        Iterator<Integer> i = adj[s].listIterator();
+        while (i.hasNext()){
+            int temp = i.next();
+            if(!visited[temp]){
+                DFSUtil(temp,visited);
+            }
+        }
+    }
+
     void BFS(int s){
         boolean visited[] = new boolean[V];
         LinkedList<Integer> queue = new LinkedList<>();
-        visited[s] =true;
+        visited[s] = true;
         queue.add(s);
-        while (queue.size() !=0){
+        while (!queue.isEmpty()){
             s = queue.poll();
             System.out.print(s+" ");
             Iterator<Integer> i = adj[s].listIterator();
@@ -45,9 +62,12 @@ class Main{
         g.addEdge(1,2);
         g.addEdge(2,0);
         g.addEdge(2,3);
-        g.addEdge(3,3);
         g.BFS(2);
         System.out.println();
         g.BFS(1);
+        System.out.println();
+        g.DFS(2);
+        System.out.println();
+        g.DFS(1);
     }
 }
